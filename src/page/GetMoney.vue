@@ -3,8 +3,22 @@
 </template>
 
 <script>
+
+import axios from "axios";
+
 export default {
-  name: "GetMoney"
+  name: "GetMoney",
+  data(){
+    return{
+      message: "",
+    }
+  },
+  mounted() {
+
+  },
+  methods: {
+
+  }
 }
 </script>
 
