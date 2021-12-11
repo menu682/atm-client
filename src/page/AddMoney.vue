@@ -2,9 +2,14 @@
   <div>
     <h1>Добавляем купюры</h1>
     <ul>
-      <li v-for="bill in money" :key="bill.id"> {{ bill.bill }} <input type="number" min="0"
-                                                                       step="1"
-                                                                       v-model="bill.amount"></li>
+      <li v-for="bill in money" :key="bill.id">
+        {{ bill.bill }}
+        <input v-model="bill.amount"
+               type="number"
+               min="0"
+        >
+
+      </li>
     </ul>
     <button type="button" @click="addmoney">пополнить</button>
     <div>{{ message }}</div>
@@ -23,7 +28,7 @@ export default {
     return {
       money: [],
       message: "",
-      summ: 0
+      summ: 0,
     }
   },
   mounted() {

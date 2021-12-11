@@ -1,7 +1,7 @@
 <template>
   <h1>БАНКОМАТ</h1>
   <div>{{message}}</div>
-  <router-link to="/addmoney">Я инкасатор, вношу деньги!</router-link>
+  <router-link to="/addmoney">Я инкасатор, вношу деньги!</router-link> <br>
   <router-link to="/getcart">Я пользователь, снимаю деньги!</router-link>
 
 </template>

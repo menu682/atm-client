@@ -32,11 +32,12 @@ export default {
         } else {
           const payload = {
             cartNumber: res.data.cartNumber,
+            cartPin: res.data.cartPin,
             debitBalance: res.data.debitBalance,
             creditBalance: res.data.creditBalance,
             userName: res.data.userName
           }
-          this.$store.commit('addCartNumber', payload)
+          this.$store.commit('addCart', payload)
           this.$router.push({path: '/selectbalance/'})
         }
       })

@@ -11,7 +11,7 @@
     <p>Ведите сумму кратную {{multiple}}</p>
     <div>
       <p>Сколько хотите снять?</p>
-      <input type="number" min="0" v-model="summ"/>
+      <input type="number" min="0" v-model="sum"/>
       <button @click="getMoney">Снять деньги</button>
     </div>
     <div>{{ message }}</div>
@@ -32,7 +32,9 @@ export default {
       userName: this.$store.state.userName,
       debitBalance: this.$store.state.debitBalance,
       creditBalance: this.$store.state.creditBalance,
-      summ: "",
+      cartNumber: this.$store.state.cartNumber,
+      cartPin: this.$store.state.cartPin,
+      sum: "",
       message: "",
       multiple: ""
     }
@@ -63,7 +65,24 @@ export default {
       if (currentBalance < this.summ) {
         this.message = "Недостаточно денег!"
       } else {
-        this.message = "Ща снимем"
+
+        const giveOutSumDTO = {
+          sum : this.sum,
+          cartNumber: this.cartNumber,
+          cartPin: this.cartPin,
+          balance: this.balance
+        }
+        const url = "http://localhost:8080/getmoney/givemoney"
+        axios.post(url, giveOutSumDTO).then(res => {
+
+          const payload = {
+            money: res.data.moneyDTOList,
+            message: res.data.message
+          }
+          this.$store.commit('givenMoney', payload)
+          this.$router.push({path: '/getmoney/'})
+
+        })
       }
     }
   }
